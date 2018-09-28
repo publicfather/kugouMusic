@@ -123,6 +123,7 @@ export default{
         float: left;
         width: 50px;
         height: 50px;
+        border-radius: 3px;
       }
       .detail{
         float: right;

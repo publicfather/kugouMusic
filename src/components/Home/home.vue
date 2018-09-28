@@ -30,18 +30,4 @@ export default{
 </script>
 
 <style lang="scss" scoped type="text/css">
-@import "../../css/varibles.scss";
-  .home{
-    //height: auto;
-    //margin-top: $IndexHeaderHeight + 3px;
-    padding-top: .01rem;
-    //margin-bottom: 64px;
-    overflow: scroll;
-    position: absolute;
-    top: $IndexHeaderHeight;
-    bottom: 64px;
-    padding-bottom: 64px;
-   // padding-top: $IndexHeaderHeight;
-    width: 100%;
-  }
 </style>

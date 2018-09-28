@@ -1,0 +1,17 @@
+{
+  "ret": true,
+  "menuList": [
+    {
+      "cover": "static/images/background2.jpg",
+      "name": "我喜欢",
+      "sum": 43,
+      "download": 19
+    },
+    {
+      "cover": "static/images/background4.jpg",
+      "name": "皮皮的歌单",
+      "sum": 43,
+      "download": 23
+    }
+  ]
+}

@@ -1,12 +1,12 @@
 <template>
   <div class="header">
     <ul class="clearfix">
-      <li><span class="iconfont icon-sanhengxian"></span></li>
-      <li class="active">我</li>
-      <li>听</li>
-      <li>看</li>
-      <li>唱</li>
-      <li><span class="iconfont icon-yinle"></span></li>
+      <li><a href="#"><span class="iconfont icon-sanhengxian"></span></a></li>
+      <li><router-link to="/">我</router-link></li>
+      <li><router-link to="/recommend">听</router-link></li>
+      <li><router-link to="/listen">看</router-link></li>
+      <li><router-link to="/sing">唱</router-link></li>
+      <li><a href="#"><span class="iconfont icon-yinle"></span></a></li>
     </ul>
   </div>
 </template>
@@ -35,23 +35,26 @@ export default{
     background: rgba(255, 255, 255, 0.3);
     li{
       flex: 1;
-      font-size: .24rem;
-      color: #d5d5d5;
       float: left;
-      line-height: $IndexHeaderHeight;
-      text-align: center;
       cursor: pointer;
-      &:hover{
-        color: #fff;
-       }
-      .iconfont{
+      a{
+        display: block;
         font-size: .24rem;
-        color: #fff;
+        color: #d5d5d5;
+        line-height: $IndexHeaderHeight;
+        text-align: center;
+        &:hover{
+          color: #fff;
+        }
+        &.router-link-exact-active{
+          color: white;
+          font-size: .3rem;
+        }
+        .iconfont{
+          font-size: .24rem;
+          color: #fff;
+        }
       }
-    }
-    li.active{
-      color: white;
-      font-size: .3rem;
     }
   }
 }

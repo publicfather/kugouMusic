@@ -2,7 +2,9 @@
   <div id="app">
     <img class="bg" src="static/images/background6.jpg">
     <index-header></index-header>
-    <router-view/>
+    <div class="router">
+      <router-view/>
+    </div>
     <index-footer></index-footer>
   </div>
 </template>
@@ -50,6 +52,7 @@ export default {
 </script>
 
 <style lang="scss" scoped >
+@import "./css/varibles.scss";
 html, body{
   width: 100%;
   height: 100%;
@@ -68,6 +71,15 @@ html, body{
     height: 100%;
     box-sizing: border-box;
     filter: blur(3px);
+  }
+  .router{
+    padding-top: .01rem;
+    overflow: scroll;
+    position: absolute;
+    top: $IndexHeaderHeight;
+    bottom: 64px;
+    padding-bottom: 64px;
+    width: 100%;
   }
 }
 </style>
