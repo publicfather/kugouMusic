@@ -8,7 +8,7 @@
 import {getRemented} from '../api/recomm'
 import {ERR_OK} from '../api/config'
 export default{
-  name: 'jsonp',
+  name: 'jsonpVue',
   data () {
     return {
     }

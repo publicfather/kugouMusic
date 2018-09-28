@@ -12,12 +12,12 @@
       </ul>
     </div>
     <ul class="list">
-      <li class="clearfix" v-for="(item, index) in MenuList" :key="index">
+      <li class="clearfix" v-for="(item, index) in discList" :key="index">
         <img class="cover" :src="item.cover" alt="">
         <div class="detail">
           <span class="name" contenteditable="true">{{item.name}}</span><br />
           <span class="num">{{item.sum}}首，{{item.download}}首已下载</span>
-          <span class="iconfont icon-gengduo"></span>
+          <span class="iconfont icon-gengduo" @click="increment()"></span>
         </div>
       </li>
     </ul>
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import {mapGetters, mapActions} from 'vuex'
 export default{
   name: 'HomeMenuList',
   data: function () {
@@ -53,7 +54,26 @@ export default{
         sum: 43,
         download: 19
       })
-    }
+      // console.log(this.count)
+      // 传参必须用dispatch
+      this.$store.dispatch('addList', {
+        cover: 'static/images/background4.jpg',
+        name: '新建歌单',
+        sum: 0,
+        download: 0
+      })
+    },
+    ...mapActions({
+      increment: 'increment'
+    })
+  },
+  computed: {
+    // 属性
+    ...mapGetters([
+      'count',
+      'sum',
+      'discList'
+    ])
   }
 }
 </script>

@@ -11,7 +11,7 @@
 import HomeSearch from './HomeSearch.vue'
 import HomeUserInfo from './HomeUser.vue'
 import HomeMenuType from './HomeType.vue'
-import HomeMenuList from './HomeMenuList.vue'
+import HomeMenuList from './HomeDiscList.vue'
 export default{
   name: 'home',
   components: {

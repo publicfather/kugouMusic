@@ -1,12 +1,21 @@
 /**
- * Created by zijinhuren2 on 2018/9/3.
+ * Created by zijinhuren2 on 2018/9/26.
  */
 export const commonParams = {
-  g_tk: 5318,
-  inCharset: 'utf-8',
+  type: 1,
+  json: 1,
+  utf8: 1,
+  onlysong: 0,
+  disstid: 2604257168,
+  format: 'jsonp',
+  g_tk: 1729934496,
+  // jsonpCallback: 'playlistinfoCallback',
+  inCharset: 'utf8',
   outCharset: 'utf-8',
   notice: 0,
-  format: 'jsonp'
+  needNewCode: 0,
+  song_begin: 0,
+  song_num: 97
 }
 export const options = {
   param: 'jsonpCallback'
