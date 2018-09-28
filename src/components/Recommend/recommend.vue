@@ -1,11 +1,15 @@
 <template>
   <div class="recommend">
-    recommend
+    <slide></slide>
   </div>
 </template>
 <script>
+import slide from './RecommendSwiper.vue'
 export default{
-  name: 'recommend'
+  name: 'recommend',
+  components: {
+    slide
+  }
 }
 </script>
 <style lang="scss" scoped>

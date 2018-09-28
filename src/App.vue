@@ -3,7 +3,15 @@
     <img class="bg" src="static/images/background6.jpg">
     <index-header></index-header>
     <div class="router">
-      <router-view/>
+      <keep-alive>
+        <transition
+          name="router-transition"
+          enter-active-class="animated zoomInUp"
+          leave-active-class="animated zoomOutDown"
+        >
+          <router-view/>
+        </transition>
+      </keep-alive>
     </div>
     <index-footer></index-footer>
   </div>
