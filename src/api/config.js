@@ -2,20 +2,15 @@
  * Created by zijinhuren2 on 2018/9/26.
  */
 export const commonParams = {
-  type: 1,
-  json: 1,
-  utf8: 1,
-  onlysong: 0,
-  disstid: 2604257168,
+  cmd: 'shoubo',
   format: 'jsonp',
-  g_tk: 1729934496,
-  // jsonpCallback: 'playlistinfoCallback',
+  // jsonpCallback: 'MusicJsonCallback26771337091752656',
   inCharset: 'utf8',
-  outCharset: 'utf-8',
+  outCharset: 'gb2313',
   notice: 0,
   needNewCode: 0,
-  song_begin: 0,
-  song_num: 97
+  hostUin: 0,
+  platform: 'yqq'
 }
 export const options = {
   param: 'jsonpCallback'

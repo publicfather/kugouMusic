@@ -27,7 +27,7 @@
 <script>
 import {mapGetters, mapActions} from 'vuex'
 export default{
-  name: 'HomeMenuList',
+  name: 'UserDiscList',
   data: function () {
     return {
       MenuList: [
@@ -132,9 +132,12 @@ export default{
         margin-left: 8px;
         border-bottom: 1px rgba(255, 255, 255, 0.1) solid;
         .name{
-          font-size: 16px;
+          font-size: 14px;
           font-weight: 400;
           color: #fff;
+        }
+        .num{
+          font-size: 12px;
         }
         .iconfont{
           float: right;

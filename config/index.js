@@ -10,7 +10,18 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      'api/getSongs': {
+        target: 'https://y.qq.com/download/download.js',
+        bypass: function (req, res, proxyOptions) {
+          req.headers.referer = 'https://y.qq.com'
+          req.headers.host = 'y.qq.com'
+        },
+        pathRewrite: {
+          '^/api/getSongs': ''
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

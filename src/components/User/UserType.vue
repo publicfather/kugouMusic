@@ -33,7 +33,7 @@
 
 <script>
 export default{
-  name: 'HomeMenuType'
+  name: 'UserMenuType'
 }
 </script>
 

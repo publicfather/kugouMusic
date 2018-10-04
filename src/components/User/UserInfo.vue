@@ -17,7 +17,7 @@
 </template>
 <script>
 export default{
-  name: 'HomeUserInfo'
+  name: 'UserInfo'
 }
 </script>
 

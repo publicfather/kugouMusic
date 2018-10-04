@@ -4,7 +4,7 @@
       <img src="static/images/singer.jpg" alt="">
     </div>
     <div class="player">
-      <div class="progress">
+      <div class="progress" @click.prevent="changeCurTime" ref="progress">
         <div class="progressBar" :style="[progressBarStyle]"></div>
       </div>
       <div class="control clearfix">
@@ -114,7 +114,8 @@ export default{
       audio: 1,
       isPlaying: false,
       duration: 0,
-      curTime: 0
+      curTime: 0,
+      percent: 0
     }
   },
   computed: {
@@ -171,6 +172,16 @@ export default{
       // 显示曲目名称
       this.$refs.songName.innerHTML = this.playQueen.data[this.curIndex].name
       this.$refs.songSinger.innerHTML = this.playQueen.data[this.curIndex].singer
+    },
+    // 点击改变播放进度
+    changeCurTime (e) {
+      // console.log(this.$refs.progress.offsetLeft)
+      // console.log(e.clientX)
+      // 点击改变播放进度百分比
+      this.percent = (e.clientX - this.$refs.progress.offsetLeft) / this.$refs.progress.offsetWidth
+      this.curTime = this.duration * this.percent
+      // 改变当前播放时间
+      this.audio.currentTime = Math.floor(this.duration * this.percent)
     }
   },
   mounted: function () {
