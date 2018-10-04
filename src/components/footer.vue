@@ -47,6 +47,7 @@
   </div>
 </template>
 <script>
+import {mapGetters} from 'vuex'
 export default{
   name: 'IndexFooter',
   data () {
@@ -56,6 +57,7 @@ export default{
         height: '100%',
         background: 'orangered'
       },
+      /*
       playQueen: {
         isHidden: true,
         data: [
@@ -109,6 +111,7 @@ export default{
           }
         ]
       },
+      */
       // 当前播放曲目curIndex
       curIndex: 0,
       audio: 1,
@@ -119,6 +122,7 @@ export default{
     }
   },
   computed: {
+    ...mapGetters(['playQueen'])
   },
   methods: {
     showList: function () {

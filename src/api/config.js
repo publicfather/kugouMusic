@@ -1,7 +1,7 @@
 /**
  * Created by zijinhuren2 on 2018/9/26.
  */
-export const commonParams = {
+export const commonParamsMvList = {
   cmd: 'shoubo',
   format: 'jsonp',
   // jsonpCallback: 'MusicJsonCallback26771337091752656',
@@ -10,6 +10,14 @@ export const commonParams = {
   notice: 0,
   needNewCode: 0,
   hostUin: 0,
+  platform: 'yqq'
+}
+export const commonParamsRecommend = {
+  g_tk: 5381,
+  format: 'jsonp',
+  inCharset: 'utf8',
+  outCharset: 'gb2313',
+  notice: 0,
   platform: 'yqq'
 }
 export const options = {

@@ -2,15 +2,18 @@
   <div class="slide">
     <swiper :options="swiperOption">
       <swiper-slide
-        v-for="item in imgUrl"
+        v-for="item in recommendList"
         :key="item.id">
-          <img :src="item.url">
+          <img :src="item.picUrl">
       </swiper-slide>
     </swiper>
     <div class="swiper-pagination" slot="pagination"></div>
   </div>
 </template>
 <script>
+import getRecommend from '../../api/getRecommend'
+import {ERR_OK} from '../../api/config'
+import {mapGetters} from 'vuex'
 export default {
   name: 'slide',
   data () {
@@ -43,6 +46,18 @@ export default {
         }
       ]
     }
+  },
+  mounted: function () {
+    getRecommend({platform: 'h5', uin: 0, needNewCode: 1}).then((res) => {
+      if (res.code === ERR_OK) {
+        this.$store.commit('initRecommendList', res.data.slider)
+      }
+    })
+  },
+  computed: {
+    ...mapGetters([
+      'recommendList'
+    ])
   }
 }
 </script>
