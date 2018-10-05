@@ -10,9 +10,13 @@ const state = {
   count: 0,
   menuList: [
   ],
+  // 推荐歌单列表数据
+  recommendDiscList: [],
+  // mv列表数据
   mvList: [],
   // 轮播图数据
   recommendList: [],
+  // 播放队列
   playQueue: {
     isHidden: true,
     data: [
@@ -80,10 +84,12 @@ const state = {
       password: '123'
     }
   ],
+  // 当前登录用户
   curUser: {
     username: '',
     password: ''
   },
+  // 是否登陆了
   isLogin: false
 }
 const mutations = {
@@ -102,15 +108,19 @@ const mutations = {
   },
   // 添加曲目到播放队列
   addToQueue (state, data) {
-    state.playQueue.push(data)
+    state.playQueue.data.splice(-1, 0, data)
   },
   // mv列表数据初始化
   initMvList (state, data) {
     state.mvList.push(data)
   },
-  // mv列表数据初始化
+  // 轮播图数据初始化
   initRecommendList (state, data) {
     state.recommendList.push(data)
+  },
+  // 推荐歌单列表数据初始化
+  initRecommendDiscList (state, data) {
+    state.recommendDiscList = data
   }
 }
 const actions = {
@@ -147,6 +157,9 @@ const getters = {
   },
   playQueen (state) {
     return state.playQueue
+  },
+  recommendDiscList (state) {
+    return state.recommendDiscList
   }
 }
 export default new Vuex.Store({

@@ -6,6 +6,7 @@
     <div class="player">
       <div class="progress" @click.prevent="changeCurTime" ref="progress">
         <div class="progressBar" :style="[progressBarStyle]"></div>
+        <div class="showStep" v-show="isShowStep">{{direction}}{{step}}秒</div>
       </div>
       <div class="control clearfix">
         <div class="songInfo">
@@ -13,6 +14,8 @@
           <span class="singer" ref="songSinger"></span>
         </div>
         <ul class="controlBar">
+          <li><span class="iconfont icon-ai-rew-left" @click="goAheadOrBack(-step)"></span></li>
+          <li><span class="iconfont icon-ai-rew-right" @click="goAheadOrBack(step)"></span></li>
           <li><span :class="{'iconfont':true, 'icon-bofang': !isPlaying, 'icon-zanting': isPlaying}" @click="controlStaus()"></span></li>
           <li><span class="iconfont icon-xiayishou-copy" @click="playNextSong()"></span></li>
           <li><span class="iconfont icon-bofangliebiao" @click="showList()"></span></li>
@@ -118,7 +121,11 @@ export default{
       isPlaying: false,
       duration: 0,
       curTime: 0,
-      percent: 0
+      percent: 0,
+      step: 6, // 快进快退步长
+      isShowStep: false,
+      direction: '快进',
+      timer: 1
     }
   },
   computed: {
@@ -186,6 +193,21 @@ export default{
       this.curTime = this.duration * this.percent
       // 改变当前播放时间
       this.audio.currentTime = Math.floor(this.duration * this.percent)
+    },
+    // 显示快进或快退
+    goAheadOrBack (step) {
+      this.curTime += step
+      this.audio.currentTime = this.curTime
+      if (step < 0) {
+        this.direction = '快退'
+      } else {
+        this.direction = '快进'
+      }
+      this.isShowStep = true
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        this.isShowStep = false
+      }, 1000)
     }
   },
   mounted: function () {
@@ -199,6 +221,7 @@ export default{
     // 获取当前播放时间
     this.audio.addEventListener('timeupdate', function () {
       _this.curTime = Math.floor(_this.audio.currentTime)
+      // console.log(`${_this.curTime}+${_this.duration}`)
       // 改变进度条宽度占比
       _this.progressBarStyle.width = (_this.curTime / _this.duration * 100) + '%'
       if (_this.audio.ended) {
@@ -303,6 +326,7 @@ export default{
       height: 3px;
       background: rgba(255, 255, 255, 0.2);
       margin: 7px auto;
+      position: relative;
       .progressBar{
         //width: 50%;
        // height: 100%;
@@ -320,6 +344,12 @@ export default{
           top: -2px;
           box-shadow: 0 0 3px 2px orangered;
         }
+      }
+      .showStep{
+        position: absolute;
+        top: -26px;
+        font-size: 12px;
+        color: #fff;
       }
     }
     .control{
