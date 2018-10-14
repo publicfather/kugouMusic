@@ -52,6 +52,11 @@ export default {
       } else {
         next()
       }
+      if (to.path === '/user/typeOne') {
+        // this.checkLogin()
+        this.$store.commit('updateUsername', '')
+        this.$store.commit('updatePassword', '')
+      }
     })
     this.getData()
     /*
