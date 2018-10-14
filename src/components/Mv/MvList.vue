@@ -13,7 +13,7 @@
     <ul class="allList">
       <li class="item" v-for="(item, index) in curList" :key="index">
         <div class="mv-cover">
-          <img :src="item.picurl">
+          <img v-lazy="item.picurl">
           <i class="iconfont icon-bofang"></i>
         </div>
         <div class="mv-detail">
@@ -170,7 +170,7 @@ export default {
             margin-left: 4px;
             &.mv-title{
               line-height: 20px;
-              font-size: 16px;
+              font-size: 14px;
               height: 40px;
             }
             &.mv-desc{

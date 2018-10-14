@@ -1,7 +1,7 @@
 <template>
   <div class="userInfo">
     <div class="info">
-      <img src="static/images/background.jpg" alt="">
+      <img src="static/images/background6.jpg" alt="">
       <div class="detail">
         <span class="name">皮皮、夏</span>
         <span class="vip">VIP</span>

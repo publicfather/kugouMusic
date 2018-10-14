@@ -13,9 +13,9 @@
           <router-view/>
         </keep-alive>
       </div>
-      <router-link class="commit" to="/home/user">登陆</router-link>
+      <a class="commit" @click="check()">登陆</a>
       <div class="other clearfix">
-        <a href="#" class="pullLeft">快速注册</a>
+        <a href="#" class="pullLeft" @click="jumpToRegist">快速注册</a>
         <a href="#" class="pullRight">忘记密码</a>
       </div>
     </form>
@@ -32,8 +32,35 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
 export default{
-  name: 'login'
+  name: 'login',
+  methods: {
+    jumpToRegist () {
+      this.$router.push({path: '/regist'})
+    },
+    check () {
+      axios.get('/static/mock/users.json')
+        .then((res) => {
+          if (res.data.ret) {
+            res = res.data.users
+            for (var i = 0; i < res.length; i++) {
+              console.table(res[i].username)
+              if (res[i].username === this.$store.state.curUser.username && res[i].password === this.$store.state.curUser.password) {
+                this.$store.state.isLogin = true
+                break
+              } else {
+                this.$store.state.isLogin = false
+              }
+            }
+            this.$router.push({path: '/home/user'})
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>

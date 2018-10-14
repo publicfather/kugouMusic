@@ -37,7 +37,7 @@
             @click="selectSong(index)"
         >
           <span class="name">{{item.name}}</span>
-          <span class="playing">
+          <span class="playing" v-show="item.isActive">
           <div class="child"></div>
           <div class="child"></div>
           <div class="child"></div>

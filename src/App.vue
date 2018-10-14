@@ -6,9 +6,20 @@
         <router-view></router-view>
       </transition>
     </div>
+    <!--
     <ul class="bg-bubbles">
       <li v-for="i in 10" :key="i"></li>
     </ul>
+    -->
+    <transition
+      enter-active-class="animated bounceInDown"
+      leave-active-class="animated bounceOutUp"
+    >
+      <div class="shade" v-show="isShadeShow">
+        <div class="msg">{{loginMsg}}</div>
+        <i class="iconfont icon-tuichu" @click="isShadeShow=false"></i>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -20,7 +31,9 @@ export default {
   name: 'App',
   data: function () {
     return {
-      mvlist: []
+      mvlist: [],
+      loginMsg: '登陆失败',
+      isShadeShow: false
     }
   },
   components: {
@@ -29,8 +42,9 @@ export default {
     // this._getMvList()
     this.$router.beforeEach((to, from, next) => {
       if (to.path === '/home/user') {
-        this.checkLogin()
+        // this.checkLogin()
         if (this.$store.state.isLogin === false) {
+          this.isShadeShow = true
           next(false)
         } else {
           next()
@@ -74,9 +88,12 @@ export default {
           if (res.data.ret) {
             res = res.data.users
             for (var i = 0; i < res.length; i++) {
-              if (res[i].username === '123' && res[i].password === '123') {
+              console.table(res[i].username)
+              if (res[i].username === this.$store.state.curUser.username && res[i].password === this.$store.state.curUser.password) {
                 this.$store.state.isLogin = true
                 break
+              } else {
+                this.$store.state.isLogin = false
               }
             }
           }
@@ -93,6 +110,7 @@ export default {
 html, body{
   width: 100%;
   height: 100%;
+  font-family: 华文楷体 华文行楷;
   #app{
     width: 100%;
     height: 100%;
@@ -110,6 +128,37 @@ html, body{
     .router{
       width: 100%;
       height: 100%;
+    }
+    .shade{
+      font-size: 14px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #000;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      .msg{
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        margin-top: -25px;
+        color: #fff;
+      }
+      i{
+        display: block;
+        width: 100%;
+        line-height: 30px;
+        text-align: center;
+        color: #fff;
+        font-size: 20px;
+        position: absolute;
+        bottom: 30px;
+        cursor: pointer;
+      }
     }
     .bg-bubbles{
       position: absolute;

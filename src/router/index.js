@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import login from '@/components/Login/login.vue'
 import TypeOne from '@/components/Login/TypeOne'
 import TypeTwo from '@/components/Login/TypeTwo'
+import regist from '@/components/Regist/regist'
 import home from '@/components/home.vue'
 import user from '@/components/User/user'
 import recommend from '@/components/Recommend/recommend'
@@ -33,6 +34,11 @@ export default new Router({
           component: TypeTwo
         }
       ]
+    },
+    {
+      path: '/regist',
+      name: 'regist',
+      component: regist
     },
     {
       path: '/home',

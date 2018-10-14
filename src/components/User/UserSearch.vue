@@ -1,7 +1,7 @@
 <template>
   <div class="searchWrap">
     <div class="search">
-      <span class="iconfont icon-sousuo"></span>
+      <span class="iconfont icon-sousuo" @click="_search()"></span>
       <input type="text" placeholder="洛天依、一百万个可能" v-model="query">
     </div>
   </div>
@@ -12,30 +12,39 @@ import search from '../../api/search'
 import {ERR_OK} from '../../api/config'
 // import {getDiscList} from 'api/search3'
 // import {searchByKeyWords} from 'api/search4'
+import getMusic from '@/api/getMusic'
 export default{
   name: 'UserSearch',
   data () {
     return {
-      query: ''
+      query: '',
+      songmid: 0,
+      songVkey: 0,
+      songUrl: '',
+      songname: '',
+      singer: ''
     }
   },
   methods: {
     _search () {
-      search('兄弟抱一下', 1, 0).then((res) => {
+      search(this.query, 1, 0).then((res) => {
         if (res.code === ERR_OK) {
-          var ret = Object.assign({}, {src: 'http://ra01.sycdn.kuwo.cn/resource/n3/32/56/3260586875.mp3'},
-            {name: res.data.song.list[0].songname},
-            {singer: res.data.song.list[0].singer[0].name},
-            {isActive: false})
-          this.$store.commit('addToQueue', ret)
+          this.songmid = res.data.song.list[0].songmid
+          this.songname = res.data.song.list[0].songname
+          this.singer = res.data.song.list[0].singer[0].name
+          getMusic(this.songmid).then((res) => {
+            const svley = res.data.items
+            this.songVkey = svley[0].vkey
+            console.table(this.songVkey)
+            var ret = Object.assign({},
+              {src: `http://dl.stream.qqmusic.qq.com/C400${this.songmid}.m4a?vkey=${this.songVkey}&guid=7981028948&uin=0&fromtag=66`},
+              {name: this.songname},
+              {singer: this.singer},
+              {isActive: false})
+            this.$store.commit('addToQueue', ret)
+          })
         }
       })
-    }
-  },
-  watch: {
-    query: function () {
-      console.log(this.query)
-      this._search()
     }
   },
   mounted: function () {

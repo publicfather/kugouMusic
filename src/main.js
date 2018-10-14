@@ -6,6 +6,7 @@ import router from './router'
 import store from './store/store'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import FastClick from 'fastclick'
+import VueLazyload from 'vue-lazyload'
 
 import '@/css/iconfont/iconfont.css'
 import '@/css/reset.css'
@@ -16,6 +17,13 @@ import '@/css/animation.css'
 Vue.config.productionTip = false
 Vue.use(VueAwesomeSwiper)
 FastClick.attach(document.body)
+
+Vue.use(VueLazyload, {
+  preload: 1.3,
+  loading: '../assets/images/background.jpg',
+  error: '../assets/images/background.jpg',
+  attempt: 1
+})
 
 /* eslint-disable no-new */
 new Vue({

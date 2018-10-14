@@ -1,0 +1,60 @@
+{
+  "music": [
+    {
+      "cover": "http://img4.kuwo.cn/star/starheads/120/3/63/739315284.jpg",
+      "src": "http://other.web.nf01.sycdn.kuwo.cn/resource/n1/74/62/1923686446.mp3",
+      "name": "盗将行",
+      "singer": "花僮",
+      "isActive": false,
+      "comment": 552
+    },
+    {
+      "cover": "http://star.kuwo.cn/star/starheads/180/60/63/2077253544.jpg",
+      "src": "http://other.web.nf01.sycdn.kuwo.cn/resource/n3/80/75/2053684110.mp3",
+      "name": "往后余生",
+      "singer": "李超亮",
+      "isActive": false,
+      "comment": 489
+    },
+    {
+      "cover": "http://star.kuwo.cn/star/starheads/180/32/11/3770391766.jpg",
+      "src": "http://other.web.rc01.sycdn.kuwo.cn/resource/n1/61/20/267931354.mp3",
+      "name": "凌晨三点",
+      "singer": "李小龙",
+      "isActive": false,
+      "comment": 258
+    },
+    {
+      "cover": "http://img2.kuwo.cn/star/starheads/120/84/28/1031012586.jpg",
+      "src": "http://other.web.nf01.sycdn.kuwo.cn/resource/n1/19/33/4225573381.mp3",
+      "name": "去年夏天",
+      "singer": "王大毛",
+      "isActive": false,
+      "comment": 325
+    },
+    {
+      "cover": "http://img4.kuwo.cn/star/starheads/120/54/44/3129288633.jpg",
+      "src": "http://other.web.nf01.sycdn.kuwo.cn/resource/n3/7/19/1580136612.mp3",
+      "name": "目不转睛",
+      "singer": "王以太",
+      "isActive": false,
+      "comment": 458
+    },
+    {
+      "cover": "http://img2.kuwo.cn/star/starheads/120/39/44/1173812222.jpg",
+      "src": "http://other.web.nf01.sycdn.kuwo.cn/resource/n1/14/78/555347657.mp3",
+      "name": "再见青春",
+      "singer": "任素汐",
+      "isActive": false,
+      "comment": 458
+    },
+    {
+      "cover": "http://img3.kuwo.cn/star/starheads/120/69/51/738687671.jpg",
+      "src": "http://other.web.rd01.sycdn.kuwo.cn/resource/n2/68/4/2727602473.mp3",
+      "name": "Stronger",
+      "singer": "Kelly Clarkson",
+      "isActive": false,
+      "comment": 458
+    }
+  ]
+}

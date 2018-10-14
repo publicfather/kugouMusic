@@ -1,12 +1,12 @@
 <template>
   <div class="songs">
     <ul class="songsList">
-      <li v-for="item in songList" :key="item.id">
+      <li v-for="(item, index) in recommendSongsList" :key="index">
         <div class="add">
-          <i class="iconfont icon-jia" @click="add()"></i>
+          <i class="iconfont icon-jia" @click="add(item)"></i>
         </div>
         <div class="cover">
-          <img :src="item.cover" alt="">
+          <img v-lazy="item.cover" alt="">
         </div>
         <div class="details">
           <span class="singer">{{item.singer}}</span>
@@ -21,7 +21,8 @@
   </div>
 </template>
 <script>
-// import {mapActions} from 'vuex'
+import {mapGetters} from 'vuex'
+import axios from 'axios'
 export default {
   name: 'songs',
   data () {
@@ -59,17 +60,27 @@ export default {
       ]
     }
   },
-  methods: {
-    add () {
-      // 存入vuex状态树
-      this.$store.dispatch('addToQueue', {
-        id: '0001',
-        cover: 'https://y.gtimg.cn/music/photo_new/T002R90x90M000004Y72Tr10VJ3x.jpg?max_age=2592000',
-        name: '我一直在这里',
-        singer: '李玉刚',
-        comment: 458
+  mounted: function () {
+    var _this = this
+    axios.get('/static/mock/music.json')
+      .then(function (res) {
+        _this.$store.commit('initRecommendSongsList', res.data.music)
+        console.log(res.data.music)
       })
+      .catch(error => {
+        console.log(error)
+      })
+  },
+  methods: {
+    add (item) {
+      // 存入vuex状态树
+      this.$store.dispatch('addToQueue', item)
     }
+  },
+  computed: {
+    ...mapGetters([
+      'recommendSongsList'
+    ])
   }
 }
 </script>
