@@ -13,11 +13,11 @@
     <ul class="allList">
       <li class="item" v-for="(item, index) in curList" :key="index">
         <div class="mv-cover">
-          <img v-lazy="item.picurl" @click="_getMvUrl(item.vid)">
+          <img :src="item.picurl" @click="_getMvUrl(item)">
           <i class="iconfont icon-bofang"></i>
         </div>
         <div class="mv-detail">
-          <span class="mv-title">{{item.mvtitle}}</span>
+          <span class="mv-title" @click="_getMvUrl(item)">{{item.mvtitle}}</span>
           <span class="mv-desc">{{item.mvdesc}}</span>
           <span class="mv-singer">{{item.singername}}</span>
         </div>
@@ -104,14 +104,23 @@ export default {
       this.curId = id
       this.mvType[id].isActive = true
     },
-    _getMvUrl (vids) {
-      getMvUrl(vids).then((res) => {
+    _getMvUrl (item) {
+      getMvUrl(item.vid).then((res) => {
         if (res.code === ERR_OK) {
           // es6语法拼接出音乐url
-          var url = `http://videohy.tc.qq.com/vcloud1049.tc.qq.com/${res.getMvUrl.data[vids].mp4[2].cn}?vkey=${res.getMvUrl.data[vids].mp4[2].vkey}&ocid=233316268`
+          var url = `http://videohy.tc.qq.com/vcloud1049.tc.qq.com/${res.getMvUrl.data[item.vid].mp4[2].cn}?vkey=${res.getMvUrl.data[item.vid].mp4[2].vkey}&ocid=233316268`
           console.log(url)
-          // this.$router.push({path: `/home/mv/:${vids}`})
-          window.location.href = url
+          this.$router.push({path: '/home/mv/vid',
+            query: {
+              vid: item.vid,
+              url: url,
+              cover: item.picurl,
+              name: item.mvtitle,
+              date: item.pub_date,
+              listennum: item.listennum
+            }
+          })
+          // window.location.href = url
         }
       })
     }

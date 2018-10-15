@@ -85,8 +85,9 @@ export default new Router({
               component: MvList
             },
             {
-              path: ':vid',
-              components: MvPlayer
+              path: 'vid',
+              name: 'MvPlayer',
+              component: MvPlayer
             }
           ]
         },
