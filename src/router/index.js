@@ -13,6 +13,7 @@ import disc from '@/components/Recommend/disc'
 import information from '@/components/Recommend/information'
 import mv from '@/components/Mv/mv.vue'
 import MvList from '@/components/Mv/MvList.vue'
+import MvPlayer from '@/components/Mv/MvPlayer.vue'
 
 Vue.use(Router)
 
@@ -82,6 +83,10 @@ export default new Router({
             {
               path: 'mvlist',
               component: MvList
+            },
+            {
+              path: ':vid',
+              components: MvPlayer
             }
           ]
         },

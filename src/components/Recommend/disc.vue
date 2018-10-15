@@ -24,9 +24,15 @@
 import {getDiscList} from 'api/search3'
 import {ERR_OK} from '../../api/config'
 import {mapGetters} from 'vuex'
+import getDiscDetail from '../../api/getDiscDetail'
 export default {
   name: 'disc',
   mounted: function () {
+    getDiscDetail().then((res) => {
+      if (res.code === ERR_OK) {
+        console.log(res.data)
+      }
+    })
     if (this.recommendDiscList.length === 0) {
       getDiscList().then((res) => {
         if (res.code === ERR_OK) {

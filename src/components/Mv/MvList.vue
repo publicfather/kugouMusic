@@ -13,7 +13,7 @@
     <ul class="allList">
       <li class="item" v-for="(item, index) in curList" :key="index">
         <div class="mv-cover">
-          <img v-lazy="item.picurl">
+          <img v-lazy="item.picurl" @click="_getMvUrl(item.vid)">
           <i class="iconfont icon-bofang"></i>
         </div>
         <div class="mv-detail">
@@ -29,6 +29,7 @@
 import {mapGetters} from 'vuex'
 import getMvList from '../../api/getMvList'
 import {ERR_OK} from '../../api/config'
+import getMvUrl from '../../api/getMvUrl'
 export default {
   name: 'MvList',
   computed: {
@@ -102,10 +103,22 @@ export default {
       this.mvType[this.curId].isActive = false
       this.curId = id
       this.mvType[id].isActive = true
+    },
+    _getMvUrl (vids) {
+      getMvUrl(vids).then((res) => {
+        if (res.code === ERR_OK) {
+          // es6语法拼接出音乐url
+          var url = `http://videohy.tc.qq.com/vcloud1049.tc.qq.com/${res.getMvUrl.data[vids].mp4[2].cn}?vkey=${res.getMvUrl.data[vids].mp4[2].vkey}&ocid=233316268`
+          console.log(url)
+          // this.$router.push({path: `/home/mv/:${vids}`})
+          window.location.href = url
+        }
+      })
     }
   },
   mounted: function () {
     this._getMvList()
+    // this._getMvUrl('y0027q7e8bp')
   }
 }
 </script>
