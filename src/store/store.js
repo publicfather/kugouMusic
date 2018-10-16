@@ -21,6 +21,7 @@ const state = {
   // 播放队列
   playQueue: {
     isHidden: true,
+    curIndex: 0,
     data: [
       {
         src: 'static/music/夜的钢琴曲.mp3',
@@ -111,6 +112,7 @@ const mutations = {
   // 添加曲目到播放队列
   addToQueue (state, data) {
     state.playQueue.data.splice(0, 0, data)
+    state.playQueue.curIndex++
   },
   // mv列表数据初始化
   initMvList (state, data) {
@@ -177,6 +179,9 @@ const getters = {
   },
   recommendSongsList (state) {
     return state.recommendSongsList
+  },
+  curIndex (state) {
+    return state.playQueue.curIndex
   }
 }
 export default new Vuex.Store({

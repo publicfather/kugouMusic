@@ -1,17 +1,17 @@
 <template>
   <div class="songs">
     <ul class="songsList">
-      <li v-for="(item, index) in recommendSongsList" :key="index">
+      <li v-for="(item, index) in songList" :key="index">
         <div class="add">
           <i class="iconfont icon-jia" @click="add(item)"></i>
         </div>
         <div class="cover">
-          <img v-lazy="item.cover" alt="">
+          <img :src="`https://y.gtimg.cn/music/photo_new/T002R90x90M000${item.album.mid}.jpg?max_age=2592000`" alt="">
         </div>
         <div class="details">
-          <span class="singer">{{item.singer}}</span>
+          <span class="singer">{{item.singer[0].name}}</span>
           <span class="name">{{item.name}}</span>
-          <span class="comment clearfix"><i class="iconfont icon-pinglun"></i>&nbsp;{{item.comment}}</span>
+          <span class="comment clearfix"><i class="iconfont icon-pinglun"></i>&nbsp;{{Math.floor(Math.random() * 100)}}</span>
         </div>
         <div class="more">
           <i class="iconfont icon-gengduo"></i>
@@ -23,41 +23,15 @@
 <script>
 import {mapGetters} from 'vuex'
 import axios from 'axios'
+import getMusic from '../../api/getMusic'
+import getSongList from '../../api/getSongList'
 export default {
   name: 'songs',
   data () {
     return {
       songList: [
-        {
-          id: '0001',
-          cover: 'https://y.gtimg.cn/music/photo_new/T002R90x90M000004Y72Tr10VJ3x.jpg?max_age=2592000',
-          name: '我一直在这里',
-          singer: '李玉刚',
-          comment: 458
-        },
-        {
-          id: '0002',
-          cover: 'https://y.gtimg.cn/music/photo_new/T002R90x90M000004ZqRQp2kg9yM.jpg?max_age=2592000',
-          name: '悲伤逆流成河',
-          singer: '张韶涵',
-          comment: 458
-        },
-        {
-          id: '0003',
-          cover: 'https://y.gtimg.cn/music/photo_new/T002R90x90M0000019TZUn0vMfjP.jpg?max_age=2592000',
-          name: '双栖动物',
-          singer: '胡夏',
-          comment: 458
-        },
-        {
-          id: '0004',
-          cover: 'https://y.gtimg.cn/music/photo_new/T002R90x90M000003Hd2CQ36Uh1p.jpg?max_age=2592000',
-          name: '寻找记忆',
-          singer: '洛天依',
-          comment: 458
-        }
-
-      ]
+      ],
+      songVkey: ''
     }
   },
   mounted: function () {
@@ -70,11 +44,24 @@ export default {
       .catch(error => {
         console.log(error)
       })
+    getSongList().then((res) => {
+      this.songList = res.new_song.data.song_list
+      // console.log(this.songList)
+    })
   },
   methods: {
     add (item) {
-      // 存入vuex状态树
-      this.$store.dispatch('addToQueue', item)
+      // 获取音乐url，存入vuex状态树
+      getMusic(item.mid).then((res) => {
+        const svley = res.data.items
+        this.songVkey = svley[0].vkey
+        var ret = Object.assign({},
+          {src: `http://dl.stream.qqmusic.qq.com/C400${item.mid}.m4a?vkey=${this.songVkey}&guid=7981028948&uin=0&fromtag=66`},
+          {name: item.name},
+          {singer: item.singer[0].name},
+          {isActive: false})
+        this.$store.commit('addToQueue', ret)
+      })
     }
   },
   computed: {

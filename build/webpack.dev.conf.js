@@ -95,6 +95,20 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           console.log(e)
         })
       })
+      app.get('/api/getSongList', function (req, res) {
+        var url = 'https://u.y.qq.com/cgi-bin/musicu.fcg' // 原api
+        axios.get(url, {
+          headers: {
+            referer: 'https://y.qq.com/',
+            host: 'u.y.qq.com'
+          },
+          params: req.query
+        }).then((response) => {
+          res.json(response.data)
+        }).catch((e) => {
+          console.log(e)
+        })
+      })
       app.get('/api/search', function (req, res) {
         var url = 'https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg'
         axios.get(url, {
