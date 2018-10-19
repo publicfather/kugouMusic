@@ -5,7 +5,7 @@
         <router-link to="/home/recommend/songs">新歌</router-link>
       </li>
       <li>
-        <router-link to="/home/recommend/zhibo">直播</router-link>
+        <router-link to="/home/recommend/broadcast">电台</router-link>
       </li>
       <li>
         <router-link to="/home/recommend/disc">歌单</router-link>

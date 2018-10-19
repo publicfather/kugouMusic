@@ -8,12 +8,13 @@ import home from '@/components/home.vue'
 import user from '@/components/User/user'
 import recommend from '@/components/Recommend/recommend'
 import songs from '@/components/Recommend/songs'
-import zhibo from '@/components/Recommend/zhibo'
+import broadcast from '@/components/Recommend/broadcast'
 import disc from '@/components/Recommend/disc'
 import information from '@/components/Recommend/information'
 import mv from '@/components/Mv/mv.vue'
 import MvList from '@/components/Mv/MvList.vue'
 import MvPlayer from '@/components/Mv/MvPlayer.vue'
+import album from '@/components/Album/album'
 
 Vue.use(Router)
 
@@ -62,8 +63,8 @@ export default new Router({
               component: songs
             },
             {
-              path: 'zhibo',
-              component: zhibo
+              path: 'broadcast',
+              component: broadcast
             },
             {
               path: 'disc',
@@ -92,12 +93,8 @@ export default new Router({
           ]
         },
         {
-          path: 'sing',
-          component: {
-            template: `
-              <div>sing</div>
-            `
-          }
+          path: 'album',
+          component: album
         }
       ]
     }

@@ -358,10 +358,14 @@ export default{
         float: left;
         .name{
           color: #fff;
+          display: inline-block;
+          width: 100px;
         }
         .singer{
           color: #bbb;
           font-size: 12px;
+          display: inline-block;
+          width: 100px;
         }
       }
       ul.controlBar{

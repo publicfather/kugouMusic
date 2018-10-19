@@ -5,7 +5,7 @@
       <li><router-link to="/home/user">我</router-link></li>
       <li><router-link to="/home/recommend">听</router-link></li>
       <li><router-link to="/home/mv">看</router-link></li>
-      <li><router-link to="/home/sing">唱</router-link></li>
+      <li><router-link to="/home/album">唱</router-link></li>
       <li><a href="#"><span class="iconfont icon-yinle"></span></a></li>
     </ul>
   </div>

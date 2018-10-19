@@ -76,6 +76,28 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           },
           params: req.query
         }).then((response) => {
+          var ret = response.data
+          if (typeof ret === 'string') {
+            var reg = /^\w+\({[^()]+}\)$/
+            var matches = ret.match(reg)
+            if (matches) {
+              ret = JSON.parse(matches[1])
+            }
+          }
+          res.json(response.data)
+        }).catch((e) => {
+          console.log(e)
+        })
+      })
+      app.get('/api/broadcastSearch', function (req, res) {
+        var url = 'https://www.ximalaya.com/revision/search' // 原api
+        axios.get(url, {
+          headers: {
+            referer: 'https://www.ximalaya.com/',
+            host: 'www.ximalaya.com'
+          },
+          params: req.query
+        }).then((response) => {
           res.json(response.data)
         }).catch((e) => {
           console.log(e)

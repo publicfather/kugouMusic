@@ -22,7 +22,7 @@
 </template>
 <script>
 import {mapGetters} from 'vuex'
-import axios from 'axios'
+// import axios from 'axios'
 import getMusic from '../../api/getMusic'
 import getSongList from '../../api/getSongList'
 export default {
@@ -35,6 +35,7 @@ export default {
     }
   },
   mounted: function () {
+    /*
     var _this = this
     axios.get('/static/mock/music.json')
       .then(function (res) {
@@ -44,6 +45,7 @@ export default {
       .catch(error => {
         console.log(error)
       })
+      */
     getSongList().then((res) => {
       this.songList = res.new_song.data.song_list
       // console.log(this.songList)

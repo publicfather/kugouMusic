@@ -27,6 +27,7 @@
 import getMvList from './api/getMvList'
 import {ERR_OK} from './api/config'
 import axios from 'axios'
+import album from './components/Album/album.vue'
 export default {
   name: 'App',
   data: function () {
@@ -37,6 +38,7 @@ export default {
     }
   },
   components: {
+    album
   },
   mounted: function () {
     // this._getMvList()
@@ -115,7 +117,6 @@ export default {
 html, body{
   width: 100%;
   height: 100%;
-  font-family: 华文楷体 华文行楷;
   #app{
     width: 100%;
     height: 100%;

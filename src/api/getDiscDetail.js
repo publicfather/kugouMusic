@@ -3,15 +3,16 @@
  */
 import {commonParams} from './config'
 import axios from 'axios'
-export default function getDiscDetail () {
+export default function getDiscDetail (disstid) {
   const url = '/api/getDiscDetail'
   const data = Object.assign({}, commonParams, {
-    disstid: '4385554939',
+    type: 1,
     json: 1,
     utf8: 1,
     onlysong: 0,
-    g_tk: 5381,
-    format: 'json'
+    disstid,
+    format: 'json',
+    g_tk: 2002381126
   })
   return axios.get(url, {
     params: data

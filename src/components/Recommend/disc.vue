@@ -3,7 +3,7 @@
     <ul class="recommend-discList">
       <li v-for="item in recommendDiscList" :key="item.dissid">
         <div class="recommend-discDetail">
-          <img :src="item.imgurl" alt="" class="cover">
+          <img :src="item.imgurl" alt="" class="cover" @click="showAlbumDetail(item)">
           <div class="listen">
             <i class="iconfont icon-erji"></i>
             <span class="count">{{item.listennum}}</span>
@@ -15,7 +15,7 @@
           </div>
           <i class="iconfont icon-bofang"></i>
         </div>
-        <div class="recommend-discname">{{item.dissname}}</div>
+        <div class="recommend-discname" @click="showAlbumDetail(item)">{{item.dissname}}</div>
       </li>
     </ul>
   </div>
@@ -28,14 +28,10 @@ import getDiscDetail from '../../api/getDiscDetail'
 export default {
   name: 'disc',
   mounted: function () {
-    getDiscDetail().then((res) => {
-      if (res.code === ERR_OK) {
-        console.log(res.data)
-      }
-    })
     if (this.recommendDiscList.length === 0) {
       getDiscList().then((res) => {
         if (res.code === ERR_OK) {
+          // console.log(typeof res)
           this.$store.commit('initRecommendDiscList', res.data.list)
         } else {
           console.log('没,没有推荐')
@@ -47,6 +43,24 @@ export default {
     ...mapGetters([
       'recommendDiscList'
     ])
+  },
+  methods: {
+    showAlbumDetail (item) {
+      this.getDiscInfo(item)
+      this.$nextTick(this.$router.push({path: '/home/album'}))
+    },
+    getDiscInfo (item) {
+      getDiscDetail(item.dissid).then((res) => {
+        if (res.cdlist) {
+          var ret = Object.assign({}, {
+            cover: item.imgurl,
+            listennum: item.listennum,
+            creator: item.creator.name
+          }, res.cdlist[0])
+        }
+        this.$store.commit('setAlbum', ret)
+      })
+    }
   }
 }
 </script>

@@ -18,6 +18,7 @@ const state = {
   recommendList: [],
   // 推荐歌曲数据
   recommendSongsList: [],
+  curAlbum: {},
   // 播放队列
   playQueue: {
     isHidden: true,
@@ -137,6 +138,10 @@ const mutations = {
   // 密码更新
   updatePassword (state, data) {
     state.curUser.password = data
+  },
+  // 当前要展示的歌单详情数据更新
+  setAlbum (state, data) {
+    state.curAlbum = Object.assign({}, data)
   }
 }
 const actions = {
@@ -182,6 +187,12 @@ const getters = {
   },
   curIndex (state) {
     return state.playQueue.curIndex
+  },
+  isShowAlbum (state) {
+    return state.isShowAlbum
+  },
+  curAlbum (state) {
+    return state.curAlbum
   }
 }
 export default new Vuex.Store({
